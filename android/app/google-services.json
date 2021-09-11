@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "641490942313",
+    "project_id": "textawy-f78b0",
+    "storage_bucket": "textawy-f78b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641490942313:android:0b3cad4858a28d293f25f8",
+        "android_client_info": {
+          "package_name": "com.textawy.textawy_message_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641490942313-le9civr6hju2341d1ntjgc61ge4g2ngj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaBb3zGhPtPTb35IzhGr5GhHEi8RIIvDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641490942313-le9civr6hju2341d1ntjgc61ge4g2ngj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

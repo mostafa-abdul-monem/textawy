@@ -4,7 +4,7 @@ class MyButton extends StatelessWidget {
   MyButton({required this.color, required this.title, required this.onPressed});
   final Color color;
   final String title;
-  final Function onPressed;
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,7 +15,7 @@ class MyButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         color: color,
         child: MaterialButton(
-          onPressed: () => onPressed,
+          onPressed: onPressed,
           minWidth: 200,
           height: 40,
           child: Text(

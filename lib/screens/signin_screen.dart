@@ -4,6 +4,8 @@ import 'package:messageme_app/widgets/my_button.dart';
 import '../constants.dart';
 
 class SignInScreen extends StatefulWidget {
+  static const String screenRoute = 'signin_screen';
+
   const SignInScreen({Key? key}) : super(key: key);
 
   @override

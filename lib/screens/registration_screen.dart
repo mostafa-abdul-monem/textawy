@@ -3,6 +3,8 @@ import 'package:messageme_app/constants.dart';
 import 'package:messageme_app/widgets/my_button.dart';
 
 class RegistrationScreen extends StatefulWidget {
+  static const String screenRoute = 'registration_screen';
+
   const RegistrationScreen({Key? key}) : super(key: key);
 
   @override

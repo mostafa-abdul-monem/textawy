@@ -15,7 +15,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Text Me',
       theme: ThemeData(),
-      home: ChatScreen(),
+      initialRoute: WelcomeScreen.screenRoute,
+      routes: {
+        WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
+        SignInScreen.screenRoute: (context) => SignInScreen(),
+        RegistrationScreen.screenRoute: (context) => RegistrationScreen(),
+        ChatScreen.screenRoute: (context) => ChatScreen(),
+        //try push
+      },
     );
   }
 }

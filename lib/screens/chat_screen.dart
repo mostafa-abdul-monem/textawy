@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:messageme_app/constants.dart';
 
 class ChatScreen extends StatefulWidget {
+  static const String screenRoute = 'chat_screen';
+
   const ChatScreen({Key? key}) : super(key: key);
 
   @override
