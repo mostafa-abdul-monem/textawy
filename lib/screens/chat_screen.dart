@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:messageme_app/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:messageme_app/screens/registration_screen.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String screenRoute = 'chat_screen';
@@ -11,6 +13,27 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  late User signedInUser;
+  final _auth = FirebaseAuth.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        signedInUser = user;
+        print(signedInUser.email);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +49,14 @@ class _ChatScreenState extends State<ChatScreen> {
             Text('messages'),
           ],
         ),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.close))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                _auth.signOut();
+                Navigator.pushNamed(context, RegistrationScreen.screenRoute);
+              },
+              icon: Icon(Icons.logout))
+        ],
       ),
       body: SafeArea(
           child: Column(
