@@ -3,6 +3,10 @@ import 'package:messageme_app/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:messageme_app/screens/registration_screen.dart';
+import 'package:messageme_app/widgets/message_item.dart';
+import 'package:messageme_app/widgets/stream_builder.dart';
+
+final _fireStore = FirebaseFirestore.instance;
 
 class ChatScreen extends StatefulWidget {
   static const String screenRoute = 'chat_screen';
@@ -14,8 +18,8 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final messageTextController = TextEditingController();
   late User signedInUser;
-  final _fireStore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
   String? message;
   @override
@@ -75,29 +79,7 @@ class _ChatScreenState extends State<ChatScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          //start of showing messages here
-          StreamBuilder<QuerySnapshot>(
-              stream: _fireStore.collection('messages').snapshots(),
-              builder: (context, snapshot) {
-                List<Text> messagesWidgets = [];
-                if (!snapshot.hasData) {
-                  return CircularProgressIndicator(
-                    color: greenColor,
-                  );
-                }
-                final messages = snapshot.data!.docs;
-                for (var message in messages) {
-                  final messageText = message.get('text');
-                  final sender = message.get('sender');
-                  final messageWidget = Text('$messageText - $sender');
-                  messagesWidgets.add(messageWidget);
-                }
-
-                return Column(
-                  children: messagesWidgets,
-                );
-              }),
-          //end of showing messages here
+          MessageStreamBuilder(),
           Container(
             decoration: BoxDecoration(
               border: Border(
@@ -109,6 +91,7 @@ class _ChatScreenState extends State<ChatScreen> {
               children: [
                 Expanded(
                   child: TextField(
+                    controller: messageTextController,
                     onChanged: (value) {
                       message = value;
                     },
@@ -121,12 +104,16 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
                 TextButton(
                   onPressed: () {
+                    messageTextController.clear();
                     _fireStore.collection('messages').add({
                       'text': message,
                       'sender': signedInUser.email,
                     });
                   },
-                  child: Icon(Icons.send_rounded, color: Colors.blue[700]),
+                  child: Icon(
+                    Icons.send_rounded,
+                    color: Colors.grey[400],
+                  ),
                 ),
               ],
             ),
