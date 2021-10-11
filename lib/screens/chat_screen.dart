@@ -7,6 +7,7 @@ import 'package:messageme_app/widgets/message_item.dart';
 import 'package:messageme_app/widgets/stream_builder.dart';
 
 final _fireStore = FirebaseFirestore.instance;
+late User signedInUser;
 
 class ChatScreen extends StatefulWidget {
   static const String screenRoute = 'chat_screen';
@@ -19,7 +20,6 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final messageTextController = TextEditingController();
-  late User signedInUser;
   final _auth = FirebaseAuth.instance;
   String? message;
   @override
